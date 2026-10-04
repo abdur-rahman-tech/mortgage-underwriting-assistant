@@ -1,0 +1,55 @@
+{
+  "dimension": 384,
+  "records": [
+    {
+      "program": "Conventional",
+      "policy_id": "DEMO-CONV-DTI-001",
+      "title": "Debt-to-income review",
+      "requirement": "Review total monthly debt obligations against qualifying monthly income. A DTI above the program's standard threshold requires documented policy support or an applicable exception.",
+      "exceptions": "Documented compensating factors may be relevant when the applicable policy permits an exception.",
+      "keywords": "DTI debt income obligations exception compensating factors",
+      "source": "Synthetic Demo Policy Manual",
+      "page": 12
+    },
+    {
+      "program": "Conventional",
+      "policy_id": "DEMO-CONV-INCOME-002",
+      "title": "Income documentation",
+      "requirement": "Qualifying income should be supported by appropriate current income and employment documentation. Conflicting income evidence must be resolved before final underwriting.",
+      "exceptions": "None stated in this synthetic policy record.",
+      "keywords": "income employment paystub verification conflicting income",
+      "source": "Synthetic Demo Policy Manual",
+      "page": 18
+    },
+    {
+      "program": "Conventional",
+      "policy_id": "DEMO-CONV-ASSET-003",
+      "title": "Assets and closing funds",
+      "requirement": "Funds needed for the transaction should be supported by acceptable asset documentation and the source of funds should be reviewed when required.",
+      "exceptions": "None stated in this synthetic policy record.",
+      "keywords": "assets cash closing funds bank statement source",
+      "source": "Synthetic Demo Policy Manual",
+      "page": 25
+    },
+    {
+      "program": "FHA",
+      "policy_id": "DEMO-FHA-DTI-001",
+      "title": "FHA debt review",
+      "requirement": "Review borrower debt obligations and qualifying income under the applicable FHA underwriting rules. This synthetic record is only a demonstration.",
+      "exceptions": "Program-specific exceptions require documented support.",
+      "keywords": "FHA DTI debt income underwriting",
+      "source": "Synthetic Demo Policy Manual",
+      "page": 40
+    },
+    {
+      "program": "General",
+      "policy_id": "DEMO-GEN-EVIDENCE-001",
+      "title": "Evidence and unresolved items",
+      "requirement": "Material underwriting conclusions should be supported by borrower evidence, policy evidence, or deterministic calculations. Unresolved material items should remain conditions for human review.",
+      "exceptions": "None stated in this synthetic policy record.",
+      "keywords": "evidence citation unresolved conditions validation audit",
+      "source": "Synthetic Demo Policy Manual",
+      "page": 3
+    }
+  ]
+}
