@@ -1,5 +1,14 @@
-
+import os
+import nest_asyncio
+import litellm
 import streamlit as st
+
+# 1. Apply nest_asyncio to prevent CrewAI/asyncio event loop conflicts in Streamlit
+nest_asyncio.apply()
+
+# 2. Configure LiteLLM globally to prevent 'cache_breakpoint' errors on Groq
+litellm.drop_params = True
+os.environ["LITELLM_CACHE"] = "False"
 
 from config.settings import APP_TITLE, MAX_DOCUMENT_CHARS
 from crew.underwriting_crew import run_underwriting_crew
@@ -90,7 +99,7 @@ if st.button("Analyze Application", type="primary", use_container_width=True):
 
     with st.status("Running the five-agent underwriting crew...", expanded=True) as status:
         try:
-            st.write("1/5 Document Review Agent")
+            st.write("Executing multi-agent underwriting pipeline...")
             result = run_underwriting_crew(
                 application_text=documents_text,
                 loan_program=loan_program,
@@ -98,12 +107,16 @@ if st.button("Analyze Application", type="primary", use_container_width=True):
                 loan_amount=loan_amount,
                 proposed_housing_payment=proposed_housing_payment,
             )
+            st.session_state["review_result"] = result
             status.update(label="Underwriting review completed", state="complete")
         except Exception as exc:
             status.update(label="Review failed", state="error")
             st.exception(exc)
             st.stop()
 
+# 3. Render report if results are in session state
+if "review_result" in st.session_state:
+    result = st.session_state["review_result"]
     report = build_report(result)
 
     st.subheader("3. Underwriting report")
@@ -120,15 +133,15 @@ if st.button("Analyze Application", type="primary", use_container_width=True):
     )
 
     with tabs[0]:
-        st.markdown(result["validation"])
+        st.markdown(result.get("validation", ""))
     with tabs[1]:
-        st.markdown(result["document_review"])
+        st.markdown(result.get("document_review", ""))
     with tabs[2]:
-        st.markdown(result["policy_review"])
+        st.markdown(result.get("policy_review", ""))
     with tabs[3]:
-        st.markdown(result["calculation_review"])
+        st.markdown(result.get("calculation_review", ""))
     with tabs[4]:
-        st.markdown(result["assessment"])
+        st.markdown(result.get("assessment", ""))
     with tabs[5]:
         st.markdown(report)
 
