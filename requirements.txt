@@ -1,6 +1,6 @@
-streamlit==1.64.0
-crewai==1.15.22
-groq==1.7.0
-faiss-cpu==1.15.1
-pypdf==6.6.2
-python-dotenv==1.2.1
+streamlit>=1.35.0
+crewai>=0.100.0
+groq>=0.9.0
+faiss-cpu>=1.8.0
+pypdf>=4.0.0
+python-dotenv>=1.0.0
